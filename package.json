@@ -1,0 +1,21 @@
+{
+  "name": "websocket",
+  "version": "4.0.0",
+  "description": "Salom server for peer to peer, real time data exchange",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shomirsaidov Abubakr",
+  "license": "Doleap Corporation",
+  "dependencies": {
+    "blueimp-md5": "^2.19.0",
+    "brainjs": "^0.7.4",
+    "crypto": "^1.0.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.2.0",
+    "nodemon": "^2.0.22",
+    "uuid": "^9.0.0",
+    "ws": "^8.13.0"
+  }
+}

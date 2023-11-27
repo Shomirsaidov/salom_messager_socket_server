@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" placeholder="Enter a message" id="messageText">
+	<input type="text" placeholder="Introduce yourself as..." id="senderName">
+	<button id="connect">Connect</button>
+	<input type="text" placeholder="Receiver id" id="receiverID">
+	<button id="send_btn">send</button>
+	<h4 id="m"></h4>
+</body>
+<script type="module">
+
+	// var ws = null
+	// connect.onclick = () => {
+	// 	ws = new WebSocket('ws://localhost:8000',document.getElementById('senderName').value);
+	
+	// 	ws.onmessage = (message) => {
+	// 	// message = JSON.parse(message.data);
+	// 		document.querySelector('#m').innerHTML += '<br/><br/>' + JSON.parse(message.data).sender + ': ' + JSON.parse(message.data).text;
+	// 		console.log(message);
+	// 	}
+	// }
+
+
+	var user = JSON.parse(localStorage.salom).username
+
+	const ws = new WebSocket('ws://localhost:8000',user);
+
+	ws.onmessage = (message) => {
+		// message = JSON.parse(message.data);
+			document.querySelector('#m').innerHTML += '<br/><br/>' + JSON.parse(message.data).sender + ': ' + JSON.parse(message.data).text;
+			console.log(message);
+	}
+	
+
+	
+
+	document.querySelector('#send_btn').addEventListener('click', () => {
+
+		let messageObj = {
+			receiver: document.querySelector('#receiverID').value,
+			text: document.querySelector('#messageText').value,
+			sender: JSON.parse(localStorage.salom).username
+		}
+		console.log(JSON.stringify(messageObj));
+		ws.send(
+				JSON.stringify(messageObj)
+			)
+	})
+	
+
+</script>
+</html>
+
+
+
+
